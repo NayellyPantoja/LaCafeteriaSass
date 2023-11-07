@@ -11,11 +11,13 @@ const FormContacto = () => {
   });
 
   const validarNombre = () => {
-    if (reserva.nombre.trim() === "") {
+    const nombre = (reserva.nombre).toLocaleLowerCase()
+
+    if (nombre.trim() === "") {
       Swal.fire("Por favor ingrese su nombre", "", "warning");
       return false;
     }
-    if (!/^[a-zA-Z]+$/.test(reserva.nombre)) {
+    if (!/^[a-zA-Z]+$/.test(nombre)) {
       Swal.fire("El nombre solo debe contener letras", "", "warning");
       return false;
     }
@@ -120,7 +122,7 @@ const FormContacto = () => {
               placeholder="Tu Nombre"
               value={reserva.nombre}
               onChange={(e) =>
-                setReserva({ ...reserva, nombre: e.target.value })
+                setReserva({ ...reserva, nombre: e.target.value.toLocaleLowerCase()})
               }
             />
           </div>
